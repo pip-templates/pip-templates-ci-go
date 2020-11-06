@@ -1,0 +1,51 @@
+version: '3.3'
+
+services:
+
+  test:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: ${IMAGE:-pipdevs/app}
+    links:
+      - mongo
+      # - postgres
+      # - sqlserver
+    environment:
+      - MONGO_ENABLED=true
+      - MONGO_SERVICE_URI=
+      - MONGO_SERVICE_HOST=mongo
+      - MONGO_SERVICE_PORT=27017
+      - MONGO_DB=app
+      # - POSTGRES_SERVICE_HOST=postgres
+      # - POSTGRES_SERVICE_PORT=5432
+      # - POSTGRES_USER=postgres
+      # - POSTGRES_PASSWORD=postgres
+      # - POSTGRES_DB=test
+      # - SQLSERVER_SERVICE_HOST=sqlserver
+      # - SQLSERVER_SERVICE_PORT=1433
+      # - SQLSERVER_USER=sa
+      # - SQLSERVER_PASS=Sqlserver_123
+      # - SQLSERVER_DB=master
+      - HTTP_ENABLED=true
+      - GRPC_ENABLED=true
+    ports:
+      - "8080:8080"
+      - "8090:8090"
+
+  mongo:
+    image: mongo:latest
+
+  # postgres:
+  #   image: postgres:latest
+  #   environment:
+  #     POSTGRES_USER: postgres
+  #     POSTGRES_PASSWORD: postgres
+  #     POSTGRES_DB: test
+
+  # sqlserver:
+  #   image: mcr.microsoft.com/mssql/server:2019-latest
+  #   container_name: sqlserver
+  #   environment:
+  #     ACCEPT_EULA: Y
+  #     SA_PASSWORD: Sqlserver_123

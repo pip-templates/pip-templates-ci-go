@@ -1,0 +1,9 @@
+/.idea
+/temp/*.json
+/obj
+/vendor
+/docker/id_rsa*
+.DS_Store
+/dist
+/exe
+go.sum

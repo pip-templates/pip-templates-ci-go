@@ -1,0 +1,6 @@
+{
+    "name": "component-name-go",
+    "version": "1.0.0",
+    "registry": "docker.pkg.github.com/organization/repository",
+    "build": 0
+}
